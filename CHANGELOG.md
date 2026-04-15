@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.0 (2026-04-15)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/alpha-digital-minds/deepraven-node/compare/v0.2.0...v0.3.0)
+
+### Features
+
+* **api:** api update ([5755cba](https://github.com/alpha-digital-minds/deepraven-node/commit/5755cbaab7deb2e02f3e21697938c12228424a5a))
+
+
+### Chores
+
+* update SDK settings ([5f7a851](https://github.com/alpha-digital-minds/deepraven-node/commit/5f7a8513dbe46bcb4211f73d3a3f42f8308e70b2))
+
 ## 0.2.0 (2026-04-15)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/alpha-digital-minds/deepraven-node/compare/v0.1.0...v0.2.0)
