@@ -12,6 +12,8 @@ import {
 } from './conversations';
 import * as ProfilesAPI from './profiles';
 import {
+  ProfileCompressResponse,
+  ProfileExportResponse,
   ProfileExtractParams,
   ProfileExtractResponse,
   ProfileExtractSyncParams,
@@ -41,6 +43,16 @@ export class Contacts extends APIResource {
    */
   list(projectId: string, options?: Core.RequestOptions): Core.APIPromise<ContactListResponse> {
     return this._client.get(`/api/v1/projects/${projectId}/contacts`, options);
+  }
+
+  /**
+   * Delete all data (contact, profile, conversations) for a contact.
+   */
+  delete(projectId: string, contactId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
+    return this._client.delete(`/api/v1/projects/${projectId}/contacts/${contactId}/contact`, {
+      ...options,
+      headers: { Accept: '*/*', ...options?.headers },
+    });
   }
 }
 
@@ -94,6 +106,8 @@ export declare namespace Contacts {
   export {
     Profiles as Profiles,
     type ProfileRetrieveResponse as ProfileRetrieveResponse,
+    type ProfileCompressResponse as ProfileCompressResponse,
+    type ProfileExportResponse as ProfileExportResponse,
     type ProfileExtractResponse as ProfileExtractResponse,
     type ProfileExtractSyncResponse as ProfileExtractSyncResponse,
     type ProfileStatusResponse as ProfileStatusResponse,

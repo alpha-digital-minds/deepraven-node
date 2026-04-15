@@ -11,8 +11,11 @@ It is generated with [Stainless](https://www.stainless.com/).
 ## Installation
 
 ```sh
-npm install deepraven
+npm install git+ssh://git@github.com:stainless-sdks/deepraven-node.git
 ```
+
+> [!NOTE]
+> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install deepraven`
 
 ## Usage
 
@@ -27,7 +30,7 @@ const client = new DeepRaven();
 const conversation = await client.projects.contacts.conversations.create(
   'proj_123',
   'contact_456',
-  { messages: [{ role: 'user', content: 'I need a gift under $200' }] },
+  { messages: [{ content: 'content', role: 'role' }] },
 );
 
 console.log(conversation.contact_id);
@@ -210,7 +213,7 @@ import DeepRaven from 'deepraven';
 ```
 
 To do the inverse, add `import "deepraven/shims/node"` (which does import polyfills).
-This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/alpha-digital-minds/deepraven-node/tree/main/src/_shims#readme)).
+This can also be useful if you are getting the wrong TypeScript types for `Response` ([more details](https://github.com/stainless-sdks/deepraven-node/tree/main/src/_shims#readme)).
 
 ### Logging and middleware
 
@@ -266,7 +269,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/alpha-digital-minds/deepraven-node/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/deepraven-node/issues) with questions, bugs, or suggestions.
 
 ## Requirements
 

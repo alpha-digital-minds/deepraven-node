@@ -32,8 +32,8 @@ describe('resource profiles', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('deleteContact', async () => {
-    const responsePromise = client.projects.contacts.profiles.deleteContact('project_id', 'contact_id');
+  test.skip('compress', async () => {
+    const responsePromise = client.projects.contacts.profiles.compress('project_id', 'contact_id');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -44,10 +44,32 @@ describe('resource profiles', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('deleteContact: request options instead of params are passed correctly', async () => {
+  test.skip('compress: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.projects.contacts.profiles.deleteContact('project_id', 'contact_id', {
+      client.projects.contacts.profiles.compress('project_id', 'contact_id', {
+        path: '/_stainless_unknown_path',
+      }),
+    ).rejects.toThrow(DeepRaven.NotFoundError);
+  });
+
+  // Mock server tests are disabled
+  test.skip('export', async () => {
+    const responsePromise = client.projects.contacts.profiles.export('project_id', 'contact_id');
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // Mock server tests are disabled
+  test.skip('export: request options instead of params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.projects.contacts.profiles.export('project_id', 'contact_id', {
         path: '/_stainless_unknown_path',
       }),
     ).rejects.toThrow(DeepRaven.NotFoundError);

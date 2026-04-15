@@ -52,6 +52,13 @@ export class Projects extends APIResource {
       headers: { Accept: '*/*', ...options?.headers },
     });
   }
+
+  /**
+   * Download all contact profiles for a project as a single JSON file.
+   */
+  exportProfiles(projectId: string, options?: Core.RequestOptions): Core.APIPromise<unknown> {
+    return this._client.get(`/api/v1/projects/${projectId}/profiles/export`, options);
+  }
 }
 
 export interface ProjectCreateResponse {
@@ -114,6 +121,8 @@ export namespace ProjectListResponse {
   }
 }
 
+export type ProjectExportProfilesResponse = unknown;
+
 export interface ProjectCreateParams {
   name: string;
 
@@ -135,6 +144,7 @@ export declare namespace Projects {
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
     type ProjectListResponse as ProjectListResponse,
+    type ProjectExportProfilesResponse as ProjectExportProfilesResponse,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectUpdateParams as ProjectUpdateParams,
   };
