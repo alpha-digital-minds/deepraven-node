@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import DeepRaven from 'deepraven';
-import { Response } from 'node-fetch';
 
 const client = new DeepRaven({
   apiKey: 'My API Key',
@@ -10,8 +9,10 @@ const client = new DeepRaven({
 
 describe('resource profiles', () => {
   // Mock server tests are disabled
-  test.skip('retrieve', async () => {
-    const responsePromise = client.projects.contacts.profiles.retrieve('project_id', 'contact_id');
+  test.skip('retrieve: only required params', async () => {
+    const responsePromise = client.projects.contacts.profiles.retrieve('contact_id', {
+      project_id: 'project_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,18 +23,17 @@ describe('resource profiles', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.contacts.profiles.retrieve('project_id', 'contact_id', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
+  test.skip('retrieve: required and optional params', async () => {
+    const response = await client.projects.contacts.profiles.retrieve('contact_id', {
+      project_id: 'project_id',
+    });
   });
 
   // Mock server tests are disabled
-  test.skip('compress', async () => {
-    const responsePromise = client.projects.contacts.profiles.compress('project_id', 'contact_id');
+  test.skip('compress: only required params', async () => {
+    const responsePromise = client.projects.contacts.profiles.compress('contact_id', {
+      project_id: 'project_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -44,18 +44,17 @@ describe('resource profiles', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('compress: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.contacts.profiles.compress('project_id', 'contact_id', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
+  test.skip('compress: required and optional params', async () => {
+    const response = await client.projects.contacts.profiles.compress('contact_id', {
+      project_id: 'project_id',
+    });
   });
 
   // Mock server tests are disabled
-  test.skip('export', async () => {
-    const responsePromise = client.projects.contacts.profiles.export('project_id', 'contact_id');
+  test.skip('export: only required params', async () => {
+    const responsePromise = client.projects.contacts.profiles.export('contact_id', {
+      project_id: 'project_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -66,18 +65,17 @@ describe('resource profiles', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('export: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.contacts.profiles.export('project_id', 'contact_id', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
+  test.skip('export: required and optional params', async () => {
+    const response = await client.projects.contacts.profiles.export('contact_id', {
+      project_id: 'project_id',
+    });
   });
 
   // Mock server tests are disabled
-  test.skip('extract', async () => {
-    const responsePromise = client.projects.contacts.profiles.extract('project_id', 'contact_id');
+  test.skip('extract: only required params', async () => {
+    const responsePromise = client.projects.contacts.profiles.extract('contact_id', {
+      project_id: 'project_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -88,31 +86,18 @@ describe('resource profiles', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('extract: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.contacts.profiles.extract('project_id', 'contact_id', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
+  test.skip('extract: required and optional params', async () => {
+    const response = await client.projects.contacts.profiles.extract('contact_id', {
+      project_id: 'project_id',
+      force: true,
+    });
   });
 
   // Mock server tests are disabled
-  test.skip('extract: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.contacts.profiles.extract(
-        'project_id',
-        'contact_id',
-        { force: true },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
-  });
-
-  // Mock server tests are disabled
-  test.skip('extractSync', async () => {
-    const responsePromise = client.projects.contacts.profiles.extractSync('project_id', 'contact_id');
+  test.skip('extractSync: only required params', async () => {
+    const responsePromise = client.projects.contacts.profiles.extractSync('contact_id', {
+      project_id: 'project_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -123,31 +108,18 @@ describe('resource profiles', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('extractSync: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.contacts.profiles.extractSync('project_id', 'contact_id', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
+  test.skip('extractSync: required and optional params', async () => {
+    const response = await client.projects.contacts.profiles.extractSync('contact_id', {
+      project_id: 'project_id',
+      force: true,
+    });
   });
 
   // Mock server tests are disabled
-  test.skip('extractSync: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.contacts.profiles.extractSync(
-        'project_id',
-        'contact_id',
-        { force: true },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
-  });
-
-  // Mock server tests are disabled
-  test.skip('status', async () => {
-    const responsePromise = client.projects.contacts.profiles.status('project_id', 'contact_id');
+  test.skip('status: only required params', async () => {
+    const responsePromise = client.projects.contacts.profiles.status('contact_id', {
+      project_id: 'project_id',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -158,12 +130,9 @@ describe('resource profiles', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('status: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.contacts.profiles.status('project_id', 'contact_id', {
-        path: '/_stainless_unknown_path',
-      }),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
+  test.skip('status: required and optional params', async () => {
+    const response = await client.projects.contacts.profiles.status('contact_id', {
+      project_id: 'project_id',
+    });
   });
 });

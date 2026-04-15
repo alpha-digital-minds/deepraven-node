@@ -1,19 +1,24 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../resource';
-import { isRequestOptions } from '../../../core';
-import * as Core from '../../../core';
+import { APIResource } from '../../../core/resource';
+import { APIPromise } from '../../../core/api-promise';
+import { RequestOptions } from '../../../internal/request-options';
+import { path } from '../../../internal/utils/path';
 
 export class Profiles extends APIResource {
   /**
    * Return the current profile for a contact. Creates an empty one if new.
    */
   retrieve(
-    projectId: string,
-    contactId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ProfileRetrieveResponse> {
-    return this._client.get(`/api/v1/projects/${projectId}/contacts/${contactId}/profile`, options);
+    contactID: string,
+    params: ProfileRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<ProfileRetrieveResponse> {
+    const { project_id } = params;
+    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile`, {
+      ...options,
+      __security: {},
+    });
   }
 
   /**
@@ -21,18 +26,26 @@ export class Profiles extends APIResource {
    * any time; intended to be triggered manually or by the daily scheduler.
    */
   compress(
-    projectId: string,
-    contactId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ProfileCompressResponse> {
-    return this._client.post(`/api/v1/projects/${projectId}/contacts/${contactId}/profile/compress`, options);
+    contactID: string,
+    params: ProfileCompressParams,
+    options?: RequestOptions,
+  ): APIPromise<ProfileCompressResponse> {
+    const { project_id } = params;
+    return this._client.post(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/compress`, {
+      ...options,
+      __security: {},
+    });
   }
 
   /**
    * Download a single contact's profile as a JSON file.
    */
-  export(projectId: string, contactId: string, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    return this._client.get(`/api/v1/projects/${projectId}/contacts/${contactId}/profile/export`, options);
+  export(contactID: string, params: ProfileExportParams, options?: RequestOptions): APIPromise<unknown> {
+    const { project_id } = params;
+    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/export`, {
+      ...options,
+      __security: {},
+    });
   }
 
   /**
@@ -43,29 +56,15 @@ export class Profiles extends APIResource {
    *   the profile.
    */
   extract(
-    projectId: string,
-    contactId: string,
-    params?: ProfileExtractParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ProfileExtractResponse>;
-  extract(
-    projectId: string,
-    contactId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ProfileExtractResponse>;
-  extract(
-    projectId: string,
-    contactId: string,
-    params: ProfileExtractParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ProfileExtractResponse> {
-    if (isRequestOptions(params)) {
-      return this.extract(projectId, contactId, {}, params);
-    }
-    const { force } = params;
-    return this._client.post(`/api/v1/projects/${projectId}/contacts/${contactId}/profile/extract`, {
+    contactID: string,
+    params: ProfileExtractParams,
+    options?: RequestOptions,
+  ): APIPromise<ProfileExtractResponse> {
+    const { project_id, force } = params;
+    return this._client.post(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/extract`, {
       query: { force },
       ...options,
+      __security: {},
     });
   }
 
@@ -74,41 +73,30 @@ export class Profiles extends APIResource {
    * profile.
    */
   extractSync(
-    projectId: string,
-    contactId: string,
-    params?: ProfileExtractSyncParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ProfileExtractSyncResponse>;
-  extractSync(
-    projectId: string,
-    contactId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ProfileExtractSyncResponse>;
-  extractSync(
-    projectId: string,
-    contactId: string,
-    params: ProfileExtractSyncParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ProfileExtractSyncResponse> {
-    if (isRequestOptions(params)) {
-      return this.extractSync(projectId, contactId, {}, params);
-    }
-    const { force } = params;
-    return this._client.post(`/api/v1/projects/${projectId}/contacts/${contactId}/profile/extract/sync`, {
-      query: { force },
-      ...options,
-    });
+    contactID: string,
+    params: ProfileExtractSyncParams,
+    options?: RequestOptions,
+  ): APIPromise<ProfileExtractSyncResponse> {
+    const { project_id, force } = params;
+    return this._client.post(
+      path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/extract/sync`,
+      { query: { force }, ...options, __security: {} },
+    );
   }
 
   /**
    * Check whether profile extraction is currently running for this contact.
    */
   status(
-    projectId: string,
-    contactId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ProfileStatusResponse> {
-    return this._client.get(`/api/v1/projects/${projectId}/contacts/${contactId}/profile/status`, options);
+    contactID: string,
+    params: ProfileStatusParams,
+    options?: RequestOptions,
+  ): APIPromise<ProfileStatusResponse> {
+    const { project_id } = params;
+    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/status`, {
+      ...options,
+      __security: {},
+    });
   }
 }
 
@@ -378,12 +366,44 @@ export interface ProfileStatusResponse {
   status: string;
 }
 
+export interface ProfileRetrieveParams {
+  project_id: string;
+}
+
+export interface ProfileCompressParams {
+  project_id: string;
+}
+
+export interface ProfileExportParams {
+  project_id: string;
+}
+
 export interface ProfileExtractParams {
+  /**
+   * Path param
+   */
+  project_id: string;
+
+  /**
+   * Query param
+   */
   force?: boolean;
 }
 
 export interface ProfileExtractSyncParams {
+  /**
+   * Path param
+   */
+  project_id: string;
+
+  /**
+   * Query param
+   */
   force?: boolean;
+}
+
+export interface ProfileStatusParams {
+  project_id: string;
 }
 
 export declare namespace Profiles {
@@ -394,7 +414,11 @@ export declare namespace Profiles {
     type ProfileExtractResponse as ProfileExtractResponse,
     type ProfileExtractSyncResponse as ProfileExtractSyncResponse,
     type ProfileStatusResponse as ProfileStatusResponse,
+    type ProfileRetrieveParams as ProfileRetrieveParams,
+    type ProfileCompressParams as ProfileCompressParams,
+    type ProfileExportParams as ProfileExportParams,
     type ProfileExtractParams as ProfileExtractParams,
     type ProfileExtractSyncParams as ProfileExtractSyncParams,
+    type ProfileStatusParams as ProfileStatusParams,
   };
 }

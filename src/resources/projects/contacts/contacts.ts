@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../resource';
-import * as Core from '../../../core';
+import { APIResource } from '../../../core/resource';
 import * as ConversationsAPI from './conversations';
 import {
   ConversationCreateParams,
@@ -12,16 +11,24 @@ import {
 } from './conversations';
 import * as ProfilesAPI from './profiles';
 import {
+  ProfileCompressParams,
   ProfileCompressResponse,
+  ProfileExportParams,
   ProfileExportResponse,
   ProfileExtractParams,
   ProfileExtractResponse,
   ProfileExtractSyncParams,
   ProfileExtractSyncResponse,
+  ProfileRetrieveParams,
   ProfileRetrieveResponse,
+  ProfileStatusParams,
   ProfileStatusResponse,
   Profiles,
 } from './profiles';
+import { APIPromise } from '../../../core/api-promise';
+import { buildHeaders } from '../../../internal/headers';
+import { RequestOptions } from '../../../internal/request-options';
+import { path } from '../../../internal/utils/path';
 
 export class Contacts extends APIResource {
   conversations: ConversationsAPI.Conversations = new ConversationsAPI.Conversations(this._client);
@@ -31,27 +38,33 @@ export class Contacts extends APIResource {
    * Get Contact
    */
   retrieve(
-    projectId: string,
-    contactId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ContactRetrieveResponse> {
-    return this._client.get(`/api/v1/projects/${projectId}/contacts/${contactId}`, options);
+    contactID: string,
+    params: ContactRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<ContactRetrieveResponse> {
+    const { project_id } = params;
+    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}`, {
+      ...options,
+      __security: {},
+    });
   }
 
   /**
    * List Contacts
    */
-  list(projectId: string, options?: Core.RequestOptions): Core.APIPromise<ContactListResponse> {
-    return this._client.get(`/api/v1/projects/${projectId}/contacts`, options);
+  list(projectID: string, options?: RequestOptions): APIPromise<ContactListResponse> {
+    return this._client.get(path`/api/v1/projects/${projectID}/contacts`, { ...options, __security: {} });
   }
 
   /**
    * Delete all data (contact, profile, conversations) for a contact.
    */
-  delete(projectId: string, contactId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/api/v1/projects/${projectId}/contacts/${contactId}/contact`, {
+  delete(contactID: string, params: ContactDeleteParams, options?: RequestOptions): APIPromise<void> {
+    const { project_id } = params;
+    return this._client.delete(path`/api/v1/projects/${project_id}/contacts/${contactID}/contact`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+      __security: {},
     });
   }
 }
@@ -86,6 +99,14 @@ export namespace ContactListResponse {
   }
 }
 
+export interface ContactRetrieveParams {
+  project_id: string;
+}
+
+export interface ContactDeleteParams {
+  project_id: string;
+}
+
 Contacts.Conversations = Conversations;
 Contacts.Profiles = Profiles;
 
@@ -93,6 +114,8 @@ export declare namespace Contacts {
   export {
     type ContactRetrieveResponse as ContactRetrieveResponse,
     type ContactListResponse as ContactListResponse,
+    type ContactRetrieveParams as ContactRetrieveParams,
+    type ContactDeleteParams as ContactDeleteParams,
   };
 
   export {
@@ -111,7 +134,11 @@ export declare namespace Contacts {
     type ProfileExtractResponse as ProfileExtractResponse,
     type ProfileExtractSyncResponse as ProfileExtractSyncResponse,
     type ProfileStatusResponse as ProfileStatusResponse,
+    type ProfileRetrieveParams as ProfileRetrieveParams,
+    type ProfileCompressParams as ProfileCompressParams,
+    type ProfileExportParams as ProfileExportParams,
     type ProfileExtractParams as ProfileExtractParams,
     type ProfileExtractSyncParams as ProfileExtractSyncParams,
+    type ProfileStatusParams as ProfileStatusParams,
   };
 }

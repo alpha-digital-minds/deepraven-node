@@ -1,31 +1,35 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Keys extends APIResource {
   /**
    * Create a new account-level API key. The raw key is returned ONCE and is never
    * stored — save it securely.
    */
-  create(body: KeyCreateParams, options?: Core.RequestOptions): Core.APIPromise<KeyCreateResponse> {
-    return this._client.post('/api/v1/account/keys', { body, ...options });
+  create(body: KeyCreateParams, options?: RequestOptions): APIPromise<KeyCreateResponse> {
+    return this._client.post('/api/v1/account/keys', { body, ...options, __security: {} });
   }
 
   /**
    * List Keys
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<KeyListResponse> {
-    return this._client.get('/api/v1/account/keys', options);
+  list(options?: RequestOptions): APIPromise<KeyListResponse> {
+    return this._client.get('/api/v1/account/keys', { ...options, __security: {} });
   }
 
   /**
    * Revoke Key
    */
-  delete(keyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/api/v1/account/keys/${keyId}`, {
+  delete(keyID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/api/v1/account/keys/${keyID}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+      __security: {},
     });
   }
 }

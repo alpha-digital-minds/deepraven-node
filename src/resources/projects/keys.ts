@@ -1,35 +1,36 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Keys extends APIResource {
   /**
    * Create a new API key for a project. The raw key is returned ONCE in this
    * response and is never stored.
    */
-  create(
-    projectId: string,
-    body: KeyCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<KeyCreateResponse> {
-    return this._client.post(`/api/v1/projects/${projectId}/keys`, { body, ...options });
+  create(projectID: string, body: KeyCreateParams, options?: RequestOptions): APIPromise<KeyCreateResponse> {
+    return this._client.post(path`/api/v1/projects/${projectID}/keys`, { body, ...options, __security: {} });
   }
 
   /**
    * List Keys
    */
-  list(projectId: string, options?: Core.RequestOptions): Core.APIPromise<KeyListResponse> {
-    return this._client.get(`/api/v1/projects/${projectId}/keys`, options);
+  list(projectID: string, options?: RequestOptions): APIPromise<KeyListResponse> {
+    return this._client.get(path`/api/v1/projects/${projectID}/keys`, { ...options, __security: {} });
   }
 
   /**
    * Revoke Key
    */
-  delete(projectId: string, keyId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/api/v1/projects/${projectId}/keys/${keyId}`, {
+  delete(keyID: string, params: KeyDeleteParams, options?: RequestOptions): APIPromise<void> {
+    const { project_id } = params;
+    return this._client.delete(path`/api/v1/projects/${project_id}/keys/${keyID}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+      __security: {},
     });
   }
 }
@@ -68,10 +69,15 @@ export interface KeyCreateParams {
   name: string;
 }
 
+export interface KeyDeleteParams {
+  project_id: string;
+}
+
 export declare namespace Keys {
   export {
     type KeyCreateResponse as KeyCreateResponse,
     type KeyListResponse as KeyListResponse,
     type KeyCreateParams as KeyCreateParams,
+    type KeyDeleteParams as KeyDeleteParams,
   };
 }

@@ -1,39 +1,42 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../resource';
-import * as Core from '../core';
+import { APIResource } from '../core/resource';
+import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
+import { RequestOptions } from '../internal/request-options';
 
 export class Auth extends APIResource {
   /**
    * Authenticate with email + password and return a Supabase JWT.
    */
-  login(body: AuthLoginParams, options?: Core.RequestOptions): Core.APIPromise<AuthLoginResponse> {
-    return this._client.post('/api/v1/auth/login', { body, ...options });
+  login(body: AuthLoginParams, options?: RequestOptions): APIPromise<AuthLoginResponse> {
+    return this._client.post('/api/v1/auth/login', { body, ...options, __security: {} });
   }
 
   /**
    * Exchange a refresh token for a new access token.
    */
-  refresh(body: AuthRefreshParams, options?: Core.RequestOptions): Core.APIPromise<AuthRefreshResponse> {
-    return this._client.post('/api/v1/auth/refresh', { body, ...options });
+  refresh(body: AuthRefreshParams, options?: RequestOptions): APIPromise<AuthRefreshResponse> {
+    return this._client.post('/api/v1/auth/refresh', { body, ...options, __security: {} });
   }
 
   /**
    * Create a new account. Supabase sends a confirmation email. If email confirmation
    * is disabled in Supabase, a session is returned immediately.
    */
-  register(body: AuthRegisterParams, options?: Core.RequestOptions): Core.APIPromise<AuthRegisterResponse> {
-    return this._client.post('/api/v1/auth/register', { body, ...options });
+  register(body: AuthRegisterParams, options?: RequestOptions): APIPromise<AuthRegisterResponse> {
+    return this._client.post('/api/v1/auth/register', { body, ...options, __security: {} });
   }
 
   /**
    * Resend the signup confirmation OTP to the given email address.
    */
-  resendOtp(body: AuthResendOtpParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  resendOtp(body: AuthResendOtpParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/api/v1/auth/resend-otp', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+      __security: {},
     });
   }
 
@@ -41,11 +44,12 @@ export class Auth extends APIResource {
    * Send a password reset email. Supabase emails a link that points back to GET
    * /auth/confirm?token_hash=...&type=recovery
    */
-  resetPassword(body: AuthResetPasswordParams, options?: Core.RequestOptions): Core.APIPromise<void> {
+  resetPassword(body: AuthResetPasswordParams, options?: RequestOptions): APIPromise<void> {
     return this._client.post('/api/v1/auth/reset-password', {
       body,
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+      __security: {},
     });
   }
 
@@ -56,20 +60,17 @@ export class Auth extends APIResource {
    */
   updatePassword(
     body: AuthUpdatePasswordParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AuthUpdatePasswordResponse> {
-    return this._client.post('/api/v1/auth/update-password', { body, ...options });
+    options?: RequestOptions,
+  ): APIPromise<AuthUpdatePasswordResponse> {
+    return this._client.post('/api/v1/auth/update-password', { body, ...options, __security: {} });
   }
 
   /**
    * Verify the 6-digit OTP code sent to the user's email during signup. Returns a
    * full session on success.
    */
-  verifyOtp(
-    body: AuthVerifyOtpParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<AuthVerifyOtpResponse> {
-    return this._client.post('/api/v1/auth/verify-otp', { body, ...options });
+  verifyOtp(body: AuthVerifyOtpParams, options?: RequestOptions): APIPromise<AuthVerifyOtpResponse> {
+    return this._client.post('/api/v1/auth/verify-otp', { body, ...options, __security: {} });
   }
 }
 

@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import DeepRaven from 'deepraven';
-import { Response } from 'node-fetch';
 
 const client = new DeepRaven({
   apiKey: 'My API Key',
@@ -39,14 +38,6 @@ describe('resource projects', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('retrieve: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.retrieve('project_id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
-  });
-
-  // Mock server tests are disabled
   test.skip('update', async () => {
     const responsePromise = client.projects.update('project_id', {});
     const rawResponse = await responsePromise.asResponse();
@@ -71,14 +62,6 @@ describe('resource projects', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('list: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.projects.list({ path: '/_stainless_unknown_path' })).rejects.toThrow(
-      DeepRaven.NotFoundError,
-    );
-  });
-
-  // Mock server tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.projects.delete('project_id');
     const rawResponse = await responsePromise.asResponse();
@@ -91,14 +74,6 @@ describe('resource projects', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('delete: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(client.projects.delete('project_id', { path: '/_stainless_unknown_path' })).rejects.toThrow(
-      DeepRaven.NotFoundError,
-    );
-  });
-
-  // Mock server tests are disabled
   test.skip('exportProfiles', async () => {
     const responsePromise = client.projects.exportProfiles('project_id');
     const rawResponse = await responsePromise.asResponse();
@@ -108,13 +83,5 @@ describe('resource projects', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('exportProfiles: request options instead of params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.exportProfiles('project_id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
   });
 });

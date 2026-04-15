@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../resource';
-import { isRequestOptions } from '../../../core';
-import * as Core from '../../../core';
+import { APIResource } from '../../../core/resource';
+import { APIPromise } from '../../../core/api-promise';
+import { RequestOptions } from '../../../internal/request-options';
+import { path } from '../../../internal/utils/path';
 
 export class Conversations extends APIResource {
   /**
@@ -12,14 +13,15 @@ export class Conversations extends APIResource {
    * project.
    */
   create(
-    projectId: string,
-    contactId: string,
-    body: ConversationCreateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConversationCreateResponse> {
-    return this._client.post(`/api/v1/projects/${projectId}/contacts/${contactId}/conversations`, {
+    contactID: string,
+    params: ConversationCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<ConversationCreateResponse> {
+    const { project_id, ...body } = params;
+    return this._client.post(path`/api/v1/projects/${project_id}/contacts/${contactID}/conversations`, {
       body,
       ...options,
+      __security: {},
     });
   }
 
@@ -27,28 +29,15 @@ export class Conversations extends APIResource {
    * Return the most recent N conversation records for a contact.
    */
   list(
-    projectId: string,
-    contactId: string,
-    query?: ConversationListParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConversationListResponse>;
-  list(
-    projectId: string,
-    contactId: string,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConversationListResponse>;
-  list(
-    projectId: string,
-    contactId: string,
-    query: ConversationListParams | Core.RequestOptions = {},
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ConversationListResponse> {
-    if (isRequestOptions(query)) {
-      return this.list(projectId, contactId, {}, query);
-    }
-    return this._client.get(`/api/v1/projects/${projectId}/contacts/${contactId}/conversations`, {
+    contactID: string,
+    params: ConversationListParams,
+    options?: RequestOptions,
+  ): APIPromise<ConversationListResponse> {
+    const { project_id, ...query } = params;
+    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}/conversations`, {
       query,
       ...options,
+      __security: {},
     });
   }
 }
@@ -86,8 +75,19 @@ export namespace ConversationListResponse {
 }
 
 export interface ConversationCreateParams {
+  /**
+   * Path param
+   */
+  project_id: string;
+
+  /**
+   * Body param
+   */
   messages: Array<ConversationCreateParams.Message>;
 
+  /**
+   * Body param
+   */
   metadata?: { [key: string]: unknown } | null;
 }
 
@@ -100,6 +100,14 @@ export namespace ConversationCreateParams {
 }
 
 export interface ConversationListParams {
+  /**
+   * Path param
+   */
+  project_id: string;
+
+  /**
+   * Query param
+   */
   limit?: number;
 }
 

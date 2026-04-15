@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { DeepRavenError } from '../../error';
+import { DeepRavenError } from '../../core/error';
 
 /**
  * Basic re-implementation of `qs.stringify` for primitive types.

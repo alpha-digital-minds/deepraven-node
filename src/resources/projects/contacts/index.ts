@@ -1,6 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Contacts, type ContactRetrieveResponse, type ContactListResponse } from './contacts';
+export {
+  Contacts,
+  type ContactRetrieveResponse,
+  type ContactListResponse,
+  type ContactRetrieveParams,
+  type ContactDeleteParams,
+} from './contacts';
 export {
   Conversations,
   type ConversationCreateResponse,
@@ -16,6 +22,10 @@ export {
   type ProfileExtractResponse,
   type ProfileExtractSyncResponse,
   type ProfileStatusResponse,
+  type ProfileRetrieveParams,
+  type ProfileCompressParams,
+  type ProfileExportParams,
   type ProfileExtractParams,
   type ProfileExtractSyncParams,
+  type ProfileStatusParams,
 } from './profiles';

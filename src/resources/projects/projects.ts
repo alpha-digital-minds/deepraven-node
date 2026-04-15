@@ -1,11 +1,20 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../resource';
-import * as Core from '../../core';
+import { APIResource } from '../../core/resource';
 import * as KeysAPI from './keys';
-import { KeyCreateParams, KeyCreateResponse, KeyListResponse, Keys } from './keys';
+import { KeyCreateParams, KeyCreateResponse, KeyDeleteParams, KeyListResponse, Keys } from './keys';
 import * as ContactsAPI from './contacts/contacts';
-import { ContactListResponse, ContactRetrieveResponse, Contacts } from './contacts/contacts';
+import {
+  ContactDeleteParams,
+  ContactListResponse,
+  ContactRetrieveParams,
+  ContactRetrieveResponse,
+  Contacts,
+} from './contacts/contacts';
+import { APIPromise } from '../../core/api-promise';
+import { buildHeaders } from '../../internal/headers';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Projects extends APIResource {
   keys: KeysAPI.Keys = new KeysAPI.Keys(this._client);
@@ -14,50 +23,54 @@ export class Projects extends APIResource {
   /**
    * Create Project
    */
-  create(body: ProjectCreateParams, options?: Core.RequestOptions): Core.APIPromise<ProjectCreateResponse> {
-    return this._client.post('/api/v1/projects', { body, ...options });
+  create(body: ProjectCreateParams, options?: RequestOptions): APIPromise<ProjectCreateResponse> {
+    return this._client.post('/api/v1/projects', { body, ...options, __security: {} });
   }
 
   /**
    * Get Project
    */
-  retrieve(projectId: string, options?: Core.RequestOptions): Core.APIPromise<ProjectRetrieveResponse> {
-    return this._client.get(`/api/v1/projects/${projectId}`, options);
+  retrieve(projectID: string, options?: RequestOptions): APIPromise<ProjectRetrieveResponse> {
+    return this._client.get(path`/api/v1/projects/${projectID}`, { ...options, __security: {} });
   }
 
   /**
    * Update Project
    */
   update(
-    projectId: string,
+    projectID: string,
     body: ProjectUpdateParams,
-    options?: Core.RequestOptions,
-  ): Core.APIPromise<ProjectUpdateResponse> {
-    return this._client.patch(`/api/v1/projects/${projectId}`, { body, ...options });
+    options?: RequestOptions,
+  ): APIPromise<ProjectUpdateResponse> {
+    return this._client.patch(path`/api/v1/projects/${projectID}`, { body, ...options, __security: {} });
   }
 
   /**
    * List Projects
    */
-  list(options?: Core.RequestOptions): Core.APIPromise<ProjectListResponse> {
-    return this._client.get('/api/v1/projects', options);
+  list(options?: RequestOptions): APIPromise<ProjectListResponse> {
+    return this._client.get('/api/v1/projects', { ...options, __security: {} });
   }
 
   /**
    * Delete Project
    */
-  delete(projectId: string, options?: Core.RequestOptions): Core.APIPromise<void> {
-    return this._client.delete(`/api/v1/projects/${projectId}`, {
+  delete(projectID: string, options?: RequestOptions): APIPromise<void> {
+    return this._client.delete(path`/api/v1/projects/${projectID}`, {
       ...options,
-      headers: { Accept: '*/*', ...options?.headers },
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+      __security: {},
     });
   }
 
   /**
    * Download all contact profiles for a project as a single JSON file.
    */
-  exportProfiles(projectId: string, options?: Core.RequestOptions): Core.APIPromise<unknown> {
-    return this._client.get(`/api/v1/projects/${projectId}/profiles/export`, options);
+  exportProfiles(projectID: string, options?: RequestOptions): APIPromise<unknown> {
+    return this._client.get(path`/api/v1/projects/${projectID}/profiles/export`, {
+      ...options,
+      __security: {},
+    });
   }
 }
 
@@ -154,11 +167,14 @@ export declare namespace Projects {
     type KeyCreateResponse as KeyCreateResponse,
     type KeyListResponse as KeyListResponse,
     type KeyCreateParams as KeyCreateParams,
+    type KeyDeleteParams as KeyDeleteParams,
   };
 
   export {
     Contacts as Contacts,
     type ContactRetrieveResponse as ContactRetrieveResponse,
     type ContactListResponse as ContactListResponse,
+    type ContactRetrieveParams as ContactRetrieveParams,
+    type ContactDeleteParams as ContactDeleteParams,
   };
 }

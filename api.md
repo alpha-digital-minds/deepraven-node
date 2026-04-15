@@ -31,7 +31,7 @@ Methods:
 
 - <code title="post /api/v1/account/keys">client.account.keys.<a href="./src/resources/account/keys.ts">create</a>({ ...params }) -> KeyCreateResponse</code>
 - <code title="get /api/v1/account/keys">client.account.keys.<a href="./src/resources/account/keys.ts">list</a>() -> KeyListResponse</code>
-- <code title="delete /api/v1/account/keys/{key_id}">client.account.keys.<a href="./src/resources/account/keys.ts">delete</a>(keyId) -> void</code>
+- <code title="delete /api/v1/account/keys/{key_id}">client.account.keys.<a href="./src/resources/account/keys.ts">delete</a>(keyID) -> void</code>
 
 # Projects
 
@@ -46,11 +46,11 @@ Types:
 Methods:
 
 - <code title="post /api/v1/projects">client.projects.<a href="./src/resources/projects/projects.ts">create</a>({ ...params }) -> ProjectCreateResponse</code>
-- <code title="get /api/v1/projects/{project_id}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>(projectId) -> ProjectRetrieveResponse</code>
-- <code title="patch /api/v1/projects/{project_id}">client.projects.<a href="./src/resources/projects/projects.ts">update</a>(projectId, { ...params }) -> ProjectUpdateResponse</code>
+- <code title="get /api/v1/projects/{project_id}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>(projectID) -> ProjectRetrieveResponse</code>
+- <code title="patch /api/v1/projects/{project_id}">client.projects.<a href="./src/resources/projects/projects.ts">update</a>(projectID, { ...params }) -> ProjectUpdateResponse</code>
 - <code title="get /api/v1/projects">client.projects.<a href="./src/resources/projects/projects.ts">list</a>() -> ProjectListResponse</code>
-- <code title="delete /api/v1/projects/{project_id}">client.projects.<a href="./src/resources/projects/projects.ts">delete</a>(projectId) -> void</code>
-- <code title="get /api/v1/projects/{project_id}/profiles/export">client.projects.<a href="./src/resources/projects/projects.ts">exportProfiles</a>(projectId) -> unknown</code>
+- <code title="delete /api/v1/projects/{project_id}">client.projects.<a href="./src/resources/projects/projects.ts">delete</a>(projectID) -> void</code>
+- <code title="get /api/v1/projects/{project_id}/profiles/export">client.projects.<a href="./src/resources/projects/projects.ts">exportProfiles</a>(projectID) -> unknown</code>
 
 ## Keys
 
@@ -61,9 +61,9 @@ Types:
 
 Methods:
 
-- <code title="post /api/v1/projects/{project_id}/keys">client.projects.keys.<a href="./src/resources/projects/keys.ts">create</a>(projectId, { ...params }) -> KeyCreateResponse</code>
-- <code title="get /api/v1/projects/{project_id}/keys">client.projects.keys.<a href="./src/resources/projects/keys.ts">list</a>(projectId) -> KeyListResponse</code>
-- <code title="delete /api/v1/projects/{project_id}/keys/{key_id}">client.projects.keys.<a href="./src/resources/projects/keys.ts">delete</a>(projectId, keyId) -> void</code>
+- <code title="post /api/v1/projects/{project_id}/keys">client.projects.keys.<a href="./src/resources/projects/keys.ts">create</a>(projectID, { ...params }) -> KeyCreateResponse</code>
+- <code title="get /api/v1/projects/{project_id}/keys">client.projects.keys.<a href="./src/resources/projects/keys.ts">list</a>(projectID) -> KeyListResponse</code>
+- <code title="delete /api/v1/projects/{project_id}/keys/{key_id}">client.projects.keys.<a href="./src/resources/projects/keys.ts">delete</a>(keyID, { ...params }) -> void</code>
 
 ## Contacts
 
@@ -74,9 +74,9 @@ Types:
 
 Methods:
 
-- <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}">client.projects.contacts.<a href="./src/resources/projects/contacts/contacts.ts">retrieve</a>(projectId, contactId) -> ContactRetrieveResponse</code>
-- <code title="get /api/v1/projects/{project_id}/contacts">client.projects.contacts.<a href="./src/resources/projects/contacts/contacts.ts">list</a>(projectId) -> ContactListResponse</code>
-- <code title="delete /api/v1/projects/{project_id}/contacts/{contact_id}/contact">client.projects.contacts.<a href="./src/resources/projects/contacts/contacts.ts">delete</a>(projectId, contactId) -> void</code>
+- <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}">client.projects.contacts.<a href="./src/resources/projects/contacts/contacts.ts">retrieve</a>(contactID, { ...params }) -> ContactRetrieveResponse</code>
+- <code title="get /api/v1/projects/{project_id}/contacts">client.projects.contacts.<a href="./src/resources/projects/contacts/contacts.ts">list</a>(projectID) -> ContactListResponse</code>
+- <code title="delete /api/v1/projects/{project_id}/contacts/{contact_id}/contact">client.projects.contacts.<a href="./src/resources/projects/contacts/contacts.ts">delete</a>(contactID, { ...params }) -> void</code>
 
 ### Conversations
 
@@ -87,8 +87,8 @@ Types:
 
 Methods:
 
-- <code title="post /api/v1/projects/{project_id}/contacts/{contact_id}/conversations">client.projects.contacts.conversations.<a href="./src/resources/projects/contacts/conversations.ts">create</a>(projectId, contactId, { ...params }) -> ConversationCreateResponse</code>
-- <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}/conversations">client.projects.contacts.conversations.<a href="./src/resources/projects/contacts/conversations.ts">list</a>(projectId, contactId, { ...params }) -> ConversationListResponse</code>
+- <code title="post /api/v1/projects/{project_id}/contacts/{contact_id}/conversations">client.projects.contacts.conversations.<a href="./src/resources/projects/contacts/conversations.ts">create</a>(contactID, { ...params }) -> ConversationCreateResponse</code>
+- <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}/conversations">client.projects.contacts.conversations.<a href="./src/resources/projects/contacts/conversations.ts">list</a>(contactID, { ...params }) -> ConversationListResponse</code>
 
 ### Profiles
 
@@ -103,12 +103,12 @@ Types:
 
 Methods:
 
-- <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}/profile">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">retrieve</a>(projectId, contactId) -> ProfileRetrieveResponse</code>
-- <code title="post /api/v1/projects/{project_id}/contacts/{contact_id}/profile/compress">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">compress</a>(projectId, contactId) -> ProfileCompressResponse</code>
-- <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}/profile/export">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">export</a>(projectId, contactId) -> unknown</code>
-- <code title="post /api/v1/projects/{project_id}/contacts/{contact_id}/profile/extract">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">extract</a>(projectId, contactId, { ...params }) -> ProfileExtractResponse</code>
-- <code title="post /api/v1/projects/{project_id}/contacts/{contact_id}/profile/extract/sync">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">extractSync</a>(projectId, contactId, { ...params }) -> ProfileExtractSyncResponse</code>
-- <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}/profile/status">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">status</a>(projectId, contactId) -> ProfileStatusResponse</code>
+- <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}/profile">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">retrieve</a>(contactID, { ...params }) -> ProfileRetrieveResponse</code>
+- <code title="post /api/v1/projects/{project_id}/contacts/{contact_id}/profile/compress">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">compress</a>(contactID, { ...params }) -> ProfileCompressResponse</code>
+- <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}/profile/export">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">export</a>(contactID, { ...params }) -> unknown</code>
+- <code title="post /api/v1/projects/{project_id}/contacts/{contact_id}/profile/extract">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">extract</a>(contactID, { ...params }) -> ProfileExtractResponse</code>
+- <code title="post /api/v1/projects/{project_id}/contacts/{contact_id}/profile/extract/sync">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">extractSync</a>(contactID, { ...params }) -> ProfileExtractSyncResponse</code>
+- <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}/profile/status">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">status</a>(contactID, { ...params }) -> ProfileStatusResponse</code>
 
 # Stats
 
