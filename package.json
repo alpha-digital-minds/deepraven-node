@@ -1,6 +1,6 @@
 {
   "name": "deepraven",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "The official TypeScript library for the Deep Raven API",
   "author": "Deep Raven <hello@adminds.at>",
   "types": "dist/index.d.ts",
