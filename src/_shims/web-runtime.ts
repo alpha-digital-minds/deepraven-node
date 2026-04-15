@@ -95,7 +95,7 @@ export function getRuntime({ manuallyImported }: { manuallyImported?: boolean } 
     getDefaultAgent: (url: string) => undefined,
     fileFromPath: () => {
       throw new Error(
-        'The `fileFromPath` function is only supported in Node. See the README for more details: https://www.github.com/alpha-digital-minds/deepraven-node#file-uploads',
+        'The `fileFromPath` function is only supported in Node. See the README for more details: https://www.github.com/stainless-sdks/deepraven-node#file-uploads',
       );
     },
     isFsReadStream: (value: any) => false,
