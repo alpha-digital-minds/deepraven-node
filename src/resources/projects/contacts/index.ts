@@ -11,6 +11,8 @@ export {
 export {
   Profiles,
   type ProfileRetrieveResponse,
+  type ProfileCompressResponse,
+  type ProfileExportResponse,
   type ProfileExtractResponse,
   type ProfileExtractSyncResponse,
   type ProfileStatusResponse,

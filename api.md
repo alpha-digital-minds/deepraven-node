@@ -18,7 +18,20 @@ Methods:
 - <code title="post /api/v1/auth/update-password">client.auth.<a href="./src/resources/auth.ts">updatePassword</a>({ ...params }) -> AuthUpdatePasswordResponse</code>
 - <code title="post /api/v1/auth/verify-otp">client.auth.<a href="./src/resources/auth.ts">verifyOtp</a>({ ...params }) -> AuthVerifyOtpResponse</code>
 
-# Keys
+# Account
+
+## Keys
+
+Types:
+
+- <code><a href="./src/resources/account/keys.ts">KeyCreateResponse</a></code>
+- <code><a href="./src/resources/account/keys.ts">KeyListResponse</a></code>
+
+Methods:
+
+- <code title="post /api/v1/account/keys">client.account.keys.<a href="./src/resources/account/keys.ts">create</a>({ ...params }) -> KeyCreateResponse</code>
+- <code title="get /api/v1/account/keys">client.account.keys.<a href="./src/resources/account/keys.ts">list</a>() -> KeyListResponse</code>
+- <code title="delete /api/v1/account/keys/{key_id}">client.account.keys.<a href="./src/resources/account/keys.ts">delete</a>(keyId) -> void</code>
 
 # Projects
 
@@ -28,6 +41,7 @@ Types:
 - <code><a href="./src/resources/projects/projects.ts">ProjectRetrieveResponse</a></code>
 - <code><a href="./src/resources/projects/projects.ts">ProjectUpdateResponse</a></code>
 - <code><a href="./src/resources/projects/projects.ts">ProjectListResponse</a></code>
+- <code><a href="./src/resources/projects/projects.ts">ProjectExportProfilesResponse</a></code>
 
 Methods:
 
@@ -36,6 +50,7 @@ Methods:
 - <code title="patch /api/v1/projects/{project_id}">client.projects.<a href="./src/resources/projects/projects.ts">update</a>(projectId, { ...params }) -> ProjectUpdateResponse</code>
 - <code title="get /api/v1/projects">client.projects.<a href="./src/resources/projects/projects.ts">list</a>() -> ProjectListResponse</code>
 - <code title="delete /api/v1/projects/{project_id}">client.projects.<a href="./src/resources/projects/projects.ts">delete</a>(projectId) -> void</code>
+- <code title="get /api/v1/projects/{project_id}/profiles/export">client.projects.<a href="./src/resources/projects/projects.ts">exportProfiles</a>(projectId) -> unknown</code>
 
 ## Keys
 
@@ -61,6 +76,7 @@ Methods:
 
 - <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}">client.projects.contacts.<a href="./src/resources/projects/contacts/contacts.ts">retrieve</a>(projectId, contactId) -> ContactRetrieveResponse</code>
 - <code title="get /api/v1/projects/{project_id}/contacts">client.projects.contacts.<a href="./src/resources/projects/contacts/contacts.ts">list</a>(projectId) -> ContactListResponse</code>
+- <code title="delete /api/v1/projects/{project_id}/contacts/{contact_id}/contact">client.projects.contacts.<a href="./src/resources/projects/contacts/contacts.ts">delete</a>(projectId, contactId) -> void</code>
 
 ### Conversations
 
@@ -79,6 +95,8 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/projects/contacts/profiles.ts">ProfileRetrieveResponse</a></code>
+- <code><a href="./src/resources/projects/contacts/profiles.ts">ProfileCompressResponse</a></code>
+- <code><a href="./src/resources/projects/contacts/profiles.ts">ProfileExportResponse</a></code>
 - <code><a href="./src/resources/projects/contacts/profiles.ts">ProfileExtractResponse</a></code>
 - <code><a href="./src/resources/projects/contacts/profiles.ts">ProfileExtractSyncResponse</a></code>
 - <code><a href="./src/resources/projects/contacts/profiles.ts">ProfileStatusResponse</a></code>
@@ -86,9 +104,22 @@ Types:
 Methods:
 
 - <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}/profile">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">retrieve</a>(projectId, contactId) -> ProfileRetrieveResponse</code>
-- <code title="delete /api/v1/projects/{project_id}/contacts/{contact_id}/contact">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">deleteContact</a>(projectId, contactId) -> void</code>
+- <code title="post /api/v1/projects/{project_id}/contacts/{contact_id}/profile/compress">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">compress</a>(projectId, contactId) -> ProfileCompressResponse</code>
+- <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}/profile/export">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">export</a>(projectId, contactId) -> unknown</code>
 - <code title="post /api/v1/projects/{project_id}/contacts/{contact_id}/profile/extract">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">extract</a>(projectId, contactId, { ...params }) -> ProfileExtractResponse</code>
 - <code title="post /api/v1/projects/{project_id}/contacts/{contact_id}/profile/extract/sync">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">extractSync</a>(projectId, contactId, { ...params }) -> ProfileExtractSyncResponse</code>
 - <code title="get /api/v1/projects/{project_id}/contacts/{contact_id}/profile/status">client.projects.contacts.profiles.<a href="./src/resources/projects/contacts/profiles.ts">status</a>(projectId, contactId) -> ProfileStatusResponse</code>
 
 # Stats
+
+Types:
+
+- <code><a href="./src/resources/stats.ts">StatConversationsDailyResponse</a></code>
+- <code><a href="./src/resources/stats.ts">StatOverviewResponse</a></code>
+- <code><a href="./src/resources/stats.ts">StatUsageResponse</a></code>
+
+Methods:
+
+- <code title="get /api/v1/stats/conversations/daily">client.stats.<a href="./src/resources/stats.ts">conversationsDaily</a>() -> StatConversationsDailyResponse</code>
+- <code title="get /api/v1/stats/overview">client.stats.<a href="./src/resources/stats.ts">overview</a>() -> StatOverviewResponse</code>
+- <code title="get /api/v1/stats/usage">client.stats.<a href="./src/resources/stats.ts">usage</a>() -> StatUsageResponse</code>

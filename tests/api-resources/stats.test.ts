@@ -8,10 +8,10 @@ const client = new DeepRaven({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource contacts', () => {
+describe('resource stats', () => {
   // Mock server tests are disabled
-  test.skip('retrieve', async () => {
-    const responsePromise = client.projects.contacts.retrieve('project_id', 'contact_id');
+  test.skip('conversationsDaily', async () => {
+    const responsePromise = client.stats.conversationsDaily();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,16 +22,16 @@ describe('resource contacts', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('retrieve: request options instead of params are passed correctly', async () => {
+  test.skip('conversationsDaily: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.contacts.retrieve('project_id', 'contact_id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
+    await expect(client.stats.conversationsDaily({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      DeepRaven.NotFoundError,
+    );
   });
 
   // Mock server tests are disabled
-  test.skip('list', async () => {
-    const responsePromise = client.projects.contacts.list('project_id');
+  test.skip('overview', async () => {
+    const responsePromise = client.stats.overview();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -42,16 +42,16 @@ describe('resource contacts', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('list: request options instead of params are passed correctly', async () => {
+  test.skip('overview: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.contacts.list('project_id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
+    await expect(client.stats.overview({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      DeepRaven.NotFoundError,
+    );
   });
 
   // Mock server tests are disabled
-  test.skip('delete', async () => {
-    const responsePromise = client.projects.contacts.delete('project_id', 'contact_id');
+  test.skip('usage', async () => {
+    const responsePromise = client.stats.usage();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -62,10 +62,10 @@ describe('resource contacts', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('delete: request options instead of params are passed correctly', async () => {
+  test.skip('usage: request options instead of params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.projects.contacts.delete('project_id', 'contact_id', { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(DeepRaven.NotFoundError);
+    await expect(client.stats.usage({ path: '/_stainless_unknown_path' })).rejects.toThrow(
+      DeepRaven.NotFoundError,
+    );
   });
 });

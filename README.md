@@ -27,7 +27,7 @@ const client = new DeepRaven();
 const conversation = await client.projects.contacts.conversations.create(
   'proj_123',
   'contact_456',
-  { messages: [{ role: 'user', content: 'I need a gift under $200' }] },
+  { messages: [{ content: 'content', role: 'role' }] },
 );
 
 console.log(conversation.contact_id);

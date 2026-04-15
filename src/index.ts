@@ -20,11 +20,17 @@ import {
   AuthVerifyOtpParams,
   AuthVerifyOtpResponse,
 } from './resources/auth';
-import { Keys } from './resources/keys';
-import { Stats } from './resources/stats';
+import {
+  StatConversationsDailyResponse,
+  StatOverviewResponse,
+  StatUsageResponse,
+  Stats,
+} from './resources/stats';
+import { Account } from './resources/account/account';
 import {
   ProjectCreateParams,
   ProjectCreateResponse,
+  ProjectExportProfilesResponse,
   ProjectListResponse,
   ProjectRetrieveResponse,
   ProjectUpdateParams,
@@ -149,7 +155,7 @@ export class DeepRaven extends Core.APIClient {
   }
 
   auth: API.Auth = new API.Auth(this);
-  keys: API.Keys = new API.Keys(this);
+  account: API.Account = new API.Account(this);
   projects: API.Projects = new API.Projects(this);
   stats: API.Stats = new API.Stats(this);
 
@@ -203,7 +209,7 @@ export class DeepRaven extends Core.APIClient {
 }
 
 DeepRaven.Auth = Auth;
-DeepRaven.Keys = Keys;
+DeepRaven.Account = Account;
 DeepRaven.Projects = Projects;
 DeepRaven.Stats = Stats;
 
@@ -226,7 +232,7 @@ export declare namespace DeepRaven {
     type AuthVerifyOtpParams as AuthVerifyOtpParams,
   };
 
-  export { Keys as Keys };
+  export { Account as Account };
 
   export {
     Projects as Projects,
@@ -234,11 +240,17 @@ export declare namespace DeepRaven {
     type ProjectRetrieveResponse as ProjectRetrieveResponse,
     type ProjectUpdateResponse as ProjectUpdateResponse,
     type ProjectListResponse as ProjectListResponse,
+    type ProjectExportProfilesResponse as ProjectExportProfilesResponse,
     type ProjectCreateParams as ProjectCreateParams,
     type ProjectUpdateParams as ProjectUpdateParams,
   };
 
-  export { Stats as Stats };
+  export {
+    Stats as Stats,
+    type StatConversationsDailyResponse as StatConversationsDailyResponse,
+    type StatOverviewResponse as StatOverviewResponse,
+    type StatUsageResponse as StatUsageResponse,
+  };
 }
 
 export { toFile, fileFromPath } from './uploads';

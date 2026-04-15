@@ -8,6 +8,7 @@ export {
   type ProjectRetrieveResponse,
   type ProjectUpdateResponse,
   type ProjectListResponse,
+  type ProjectExportProfilesResponse,
   type ProjectCreateParams,
   type ProjectUpdateParams,
 } from './projects';
