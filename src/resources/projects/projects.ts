@@ -4,13 +4,7 @@ import { APIResource } from '../../core/resource';
 import * as KeysAPI from './keys';
 import { KeyCreateParams, KeyCreateResponse, KeyDeleteParams, KeyListResponse, Keys } from './keys';
 import * as ContactsAPI from './contacts/contacts';
-import {
-  ContactDeleteParams,
-  ContactListResponse,
-  ContactRetrieveParams,
-  ContactRetrieveResponse,
-  Contacts,
-} from './contacts/contacts';
+import { ContactDeleteParams, ContactListResponse, ContactRetrieveParams, ContactRetrieveResponse, Contacts } from './contacts/contacts';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
@@ -24,53 +18,42 @@ export class Projects extends APIResource {
    * Create Project
    */
   create(body: ProjectCreateParams, options?: RequestOptions): APIPromise<ProjectCreateResponse> {
-    return this._client.post('/api/v1/projects', { body, ...options, __security: {} });
+    return this._client.post('/api/v1/projects', { body, ...options, __security: {  } });
   }
 
   /**
    * Get Project
    */
   retrieve(projectID: string, options?: RequestOptions): APIPromise<ProjectRetrieveResponse> {
-    return this._client.get(path`/api/v1/projects/${projectID}`, { ...options, __security: {} });
+    return this._client.get(path`/api/v1/projects/${projectID}`, { ...options, __security: {  } });
   }
 
   /**
    * Update Project
    */
-  update(
-    projectID: string,
-    body: ProjectUpdateParams,
-    options?: RequestOptions,
-  ): APIPromise<ProjectUpdateResponse> {
-    return this._client.patch(path`/api/v1/projects/${projectID}`, { body, ...options, __security: {} });
+  update(projectID: string, body: ProjectUpdateParams, options?: RequestOptions): APIPromise<ProjectUpdateResponse> {
+    return this._client.patch(path`/api/v1/projects/${projectID}`, { body, ...options, __security: {  } });
   }
 
   /**
    * List Projects
    */
   list(options?: RequestOptions): APIPromise<ProjectListResponse> {
-    return this._client.get('/api/v1/projects', { ...options, __security: {} });
+    return this._client.get('/api/v1/projects', { ...options, __security: {  } });
   }
 
   /**
    * Delete Project
    */
   delete(projectID: string, options?: RequestOptions): APIPromise<void> {
-    return this._client.delete(path`/api/v1/projects/${projectID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-      __security: {},
-    });
+    return this._client.delete(path`/api/v1/projects/${projectID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]), __security: {  } });
   }
 
   /**
    * Download all contact profiles for a project as a single JSON file.
    */
   exportProfiles(projectID: string, options?: RequestOptions): APIPromise<unknown> {
-    return this._client.get(path`/api/v1/projects/${projectID}/profiles/export`, {
-      ...options,
-      __security: {},
-    });
+    return this._client.get(path`/api/v1/projects/${projectID}/profiles/export`, { ...options, __security: {  } });
   }
 }
 
@@ -116,7 +99,7 @@ export interface ProjectUpdateResponse {
   description?: string | null;
 }
 
-export type ProjectListResponse = Array<ProjectListResponse.ProjectListResponseItem>;
+export type ProjectListResponse = Array<ProjectListResponse.ProjectListResponseItem>
 
 export namespace ProjectListResponse {
   export interface ProjectListResponseItem {
@@ -134,7 +117,7 @@ export namespace ProjectListResponse {
   }
 }
 
-export type ProjectExportProfilesResponse = unknown;
+export type ProjectExportProfilesResponse = unknown
 
 export interface ProjectCreateParams {
   name: string;
@@ -159,7 +142,7 @@ export declare namespace Projects {
     type ProjectListResponse as ProjectListResponse,
     type ProjectExportProfilesResponse as ProjectExportProfilesResponse,
     type ProjectCreateParams as ProjectCreateParams,
-    type ProjectUpdateParams as ProjectUpdateParams,
+    type ProjectUpdateParams as ProjectUpdateParams
   };
 
   export {
@@ -167,7 +150,7 @@ export declare namespace Projects {
     type KeyCreateResponse as KeyCreateResponse,
     type KeyListResponse as KeyListResponse,
     type KeyCreateParams as KeyCreateParams,
-    type KeyDeleteParams as KeyDeleteParams,
+    type KeyDeleteParams as KeyDeleteParams
   };
 
   export {
@@ -175,6 +158,6 @@ export declare namespace Projects {
     type ContactRetrieveResponse as ContactRetrieveResponse,
     type ContactListResponse as ContactListResponse,
     type ContactRetrieveParams as ContactRetrieveParams,
-    type ContactDeleteParams as ContactDeleteParams,
+    type ContactDeleteParams as ContactDeleteParams
   };
 }

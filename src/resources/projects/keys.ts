@@ -12,26 +12,22 @@ export class Keys extends APIResource {
    * response and is never stored.
    */
   create(projectID: string, body: KeyCreateParams, options?: RequestOptions): APIPromise<KeyCreateResponse> {
-    return this._client.post(path`/api/v1/projects/${projectID}/keys`, { body, ...options, __security: {} });
+    return this._client.post(path`/api/v1/projects/${projectID}/keys`, { body, ...options, __security: {  } });
   }
 
   /**
    * List Keys
    */
   list(projectID: string, options?: RequestOptions): APIPromise<KeyListResponse> {
-    return this._client.get(path`/api/v1/projects/${projectID}/keys`, { ...options, __security: {} });
+    return this._client.get(path`/api/v1/projects/${projectID}/keys`, { ...options, __security: {  } });
   }
 
   /**
    * Revoke Key
    */
   delete(keyID: string, params: KeyDeleteParams, options?: RequestOptions): APIPromise<void> {
-    const { project_id } = params;
-    return this._client.delete(path`/api/v1/projects/${project_id}/keys/${keyID}`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-      __security: {},
-    });
+    const { project_id } = params
+    return this._client.delete(path`/api/v1/projects/${project_id}/keys/${keyID}`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]), __security: {  } });
   }
 }
 
@@ -47,7 +43,7 @@ export interface KeyCreateResponse {
   project_id: string;
 }
 
-export type KeyListResponse = Array<KeyListResponse.KeyListResponseItem>;
+export type KeyListResponse = Array<KeyListResponse.KeyListResponseItem>
 
 export namespace KeyListResponse {
   export interface KeyListResponseItem {
@@ -78,6 +74,6 @@ export declare namespace Keys {
     type KeyCreateResponse as KeyCreateResponse,
     type KeyListResponse as KeyListResponse,
     type KeyCreateParams as KeyCreateParams,
-    type KeyDeleteParams as KeyDeleteParams,
+    type KeyDeleteParams as KeyDeleteParams
   };
 }

@@ -2,29 +2,9 @@
 
 import { APIResource } from '../../../core/resource';
 import * as ConversationsAPI from './conversations';
-import {
-  ConversationCreateParams,
-  ConversationCreateResponse,
-  ConversationListParams,
-  ConversationListResponse,
-  Conversations,
-} from './conversations';
+import { ConversationCreateParams, ConversationCreateResponse, ConversationListParams, ConversationListResponse, Conversations } from './conversations';
 import * as ProfilesAPI from './profiles';
-import {
-  ProfileCompressParams,
-  ProfileCompressResponse,
-  ProfileExportParams,
-  ProfileExportResponse,
-  ProfileExtractParams,
-  ProfileExtractResponse,
-  ProfileExtractSyncParams,
-  ProfileExtractSyncResponse,
-  ProfileRetrieveParams,
-  ProfileRetrieveResponse,
-  ProfileStatusParams,
-  ProfileStatusResponse,
-  Profiles,
-} from './profiles';
+import { ProfileCompressParams, ProfileCompressResponse, ProfileExportParams, ProfileExportResponse, ProfileExtractParams, ProfileExtractResponse, ProfileExtractSyncParams, ProfileExtractSyncResponse, ProfileRetrieveParams, ProfileRetrieveResponse, ProfileStatusParams, ProfileStatusResponse, Profiles } from './profiles';
 import { APIPromise } from '../../../core/api-promise';
 import { buildHeaders } from '../../../internal/headers';
 import { RequestOptions } from '../../../internal/request-options';
@@ -37,35 +17,24 @@ export class Contacts extends APIResource {
   /**
    * Get Contact
    */
-  retrieve(
-    contactID: string,
-    params: ContactRetrieveParams,
-    options?: RequestOptions,
-  ): APIPromise<ContactRetrieveResponse> {
-    const { project_id } = params;
-    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}`, {
-      ...options,
-      __security: {},
-    });
+  retrieve(contactID: string, params: ContactRetrieveParams, options?: RequestOptions): APIPromise<ContactRetrieveResponse> {
+    const { project_id } = params
+    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}`, { ...options, __security: {  } });
   }
 
   /**
    * List Contacts
    */
   list(projectID: string, options?: RequestOptions): APIPromise<ContactListResponse> {
-    return this._client.get(path`/api/v1/projects/${projectID}/contacts`, { ...options, __security: {} });
+    return this._client.get(path`/api/v1/projects/${projectID}/contacts`, { ...options, __security: {  } });
   }
 
   /**
    * Delete all data (contact, profile, conversations) for a contact.
    */
   delete(contactID: string, params: ContactDeleteParams, options?: RequestOptions): APIPromise<void> {
-    const { project_id } = params;
-    return this._client.delete(path`/api/v1/projects/${project_id}/contacts/${contactID}/contact`, {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-      __security: {},
-    });
+    const { project_id } = params
+    return this._client.delete(path`/api/v1/projects/${project_id}/contacts/${contactID}/contact`, { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]), __security: {  } });
   }
 }
 
@@ -79,7 +48,7 @@ export interface ContactRetrieveResponse {
   project_id: string;
 }
 
-export type ContactListResponse = Array<ContactListResponse.ContactListResponseItem>;
+export type ContactListResponse = Array<ContactListResponse.ContactListResponseItem>
 
 export namespace ContactListResponse {
   export interface ContactListResponseItem {
@@ -115,7 +84,7 @@ export declare namespace Contacts {
     type ContactRetrieveResponse as ContactRetrieveResponse,
     type ContactListResponse as ContactListResponse,
     type ContactRetrieveParams as ContactRetrieveParams,
-    type ContactDeleteParams as ContactDeleteParams,
+    type ContactDeleteParams as ContactDeleteParams
   };
 
   export {
@@ -123,7 +92,7 @@ export declare namespace Contacts {
     type ConversationCreateResponse as ConversationCreateResponse,
     type ConversationListResponse as ConversationListResponse,
     type ConversationCreateParams as ConversationCreateParams,
-    type ConversationListParams as ConversationListParams,
+    type ConversationListParams as ConversationListParams
   };
 
   export {
@@ -139,6 +108,6 @@ export declare namespace Contacts {
     type ProfileExportParams as ProfileExportParams,
     type ProfileExtractParams as ProfileExtractParams,
     type ProfileExtractSyncParams as ProfileExtractSyncParams,
-    type ProfileStatusParams as ProfileStatusParams,
+    type ProfileStatusParams as ProfileStatusParams
   };
 }
