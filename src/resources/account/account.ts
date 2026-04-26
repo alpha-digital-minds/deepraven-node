@@ -15,6 +15,6 @@ export declare namespace Account {
     Keys as Keys,
     type KeyCreateResponse as KeyCreateResponse,
     type KeyListResponse as KeyListResponse,
-    type KeyCreateParams as KeyCreateParams,
+    type KeyCreateParams as KeyCreateParams
   };
 }
