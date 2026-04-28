@@ -9,26 +9,43 @@ export class Profiles extends APIResource {
   /**
    * Return the current profile for a contact. Creates an empty one if new.
    */
-  retrieve(contactID: string, params: ProfileRetrieveParams, options?: RequestOptions): APIPromise<ProfileRetrieveResponse> {
-    const { project_id } = params
-    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile`, { ...options, __security: {  } });
+  retrieve(
+    contactID: string,
+    params: ProfileRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<ProfileRetrieveResponse> {
+    const { project_id } = params;
+    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile`, {
+      ...options,
+      __security: {},
+    });
   }
 
   /**
    * Run compression on the current profile — trim bloat, newer wins. Safe to call at
    * any time; intended to be triggered manually or by the daily scheduler.
    */
-  compress(contactID: string, params: ProfileCompressParams, options?: RequestOptions): APIPromise<ProfileCompressResponse> {
-    const { project_id } = params
-    return this._client.post(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/compress`, { ...options, __security: {  } });
+  compress(
+    contactID: string,
+    params: ProfileCompressParams,
+    options?: RequestOptions,
+  ): APIPromise<ProfileCompressResponse> {
+    const { project_id } = params;
+    return this._client.post(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/compress`, {
+      ...options,
+      __security: {},
+    });
   }
 
   /**
    * Download a single contact's profile as a JSON file.
    */
   export(contactID: string, params: ProfileExportParams, options?: RequestOptions): APIPromise<unknown> {
-    const { project_id } = params
-    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/export`, { ...options, __security: {  } });
+    const { project_id } = params;
+    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/export`, {
+      ...options,
+      __security: {},
+    });
   }
 
   /**
@@ -38,26 +55,48 @@ export class Profiles extends APIResource {
    * - **force=true**: reprocesses ALL conversations from scratch, fully overwrites
    *   the profile.
    */
-  extract(contactID: string, params: ProfileExtractParams, options?: RequestOptions): APIPromise<ProfileExtractResponse> {
-    const { project_id, force } = params
-    return this._client.post(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/extract`, { query: { force }, ...options, __security: {  } });
+  extract(
+    contactID: string,
+    params: ProfileExtractParams,
+    options?: RequestOptions,
+  ): APIPromise<ProfileExtractResponse> {
+    const { project_id, force } = params;
+    return this._client.post(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/extract`, {
+      query: { force },
+      ...options,
+      __security: {},
+    });
   }
 
   /**
    * Same as /extract but synchronous — blocks until done and returns the updated
    * profile.
    */
-  extractSync(contactID: string, params: ProfileExtractSyncParams, options?: RequestOptions): APIPromise<ProfileExtractSyncResponse> {
-    const { project_id, force } = params
-    return this._client.post(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/extract/sync`, { query: { force }, ...options, __security: {  } });
+  extractSync(
+    contactID: string,
+    params: ProfileExtractSyncParams,
+    options?: RequestOptions,
+  ): APIPromise<ProfileExtractSyncResponse> {
+    const { project_id, force } = params;
+    return this._client.post(
+      path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/extract/sync`,
+      { query: { force }, ...options, __security: {} },
+    );
   }
 
   /**
    * Check whether profile extraction is currently running for this contact.
    */
-  status(contactID: string, params: ProfileStatusParams, options?: RequestOptions): APIPromise<ProfileStatusResponse> {
-    const { project_id } = params
-    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/status`, { ...options, __security: {  } });
+  status(
+    contactID: string,
+    params: ProfileStatusParams,
+    options?: RequestOptions,
+  ): APIPromise<ProfileStatusResponse> {
+    const { project_id } = params;
+    return this._client.get(path`/api/v1/projects/${project_id}/contacts/${contactID}/profile/status`, {
+      ...options,
+      __security: {},
+    });
   }
 }
 
@@ -229,7 +268,7 @@ export namespace ProfileCompressResponse {
   }
 }
 
-export type ProfileExportResponse = unknown
+export type ProfileExportResponse = unknown;
 
 export interface ProfileExtractResponse {
   contact_id: string;
@@ -380,6 +419,6 @@ export declare namespace Profiles {
     type ProfileExportParams as ProfileExportParams,
     type ProfileExtractParams as ProfileExtractParams,
     type ProfileExtractSyncParams as ProfileExtractSyncParams,
-    type ProfileStatusParams as ProfileStatusParams
+    type ProfileStatusParams as ProfileStatusParams,
   };
 }
