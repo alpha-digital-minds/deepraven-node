@@ -10,14 +10,14 @@ export class Auth extends APIResource {
    * Authenticate with email + password and return a Supabase JWT.
    */
   login(body: AuthLoginParams, options?: RequestOptions): APIPromise<AuthLoginResponse> {
-    return this._client.post('/api/v1/auth/login', { body, ...options, __security: {  } });
+    return this._client.post('/api/v1/auth/login', { body, ...options, __security: {} });
   }
 
   /**
    * Exchange a refresh token for a new access token.
    */
   refresh(body: AuthRefreshParams, options?: RequestOptions): APIPromise<AuthRefreshResponse> {
-    return this._client.post('/api/v1/auth/refresh', { body, ...options, __security: {  } });
+    return this._client.post('/api/v1/auth/refresh', { body, ...options, __security: {} });
   }
 
   /**
@@ -25,14 +25,19 @@ export class Auth extends APIResource {
    * is disabled in Supabase, a session is returned immediately.
    */
   register(body: AuthRegisterParams, options?: RequestOptions): APIPromise<AuthRegisterResponse> {
-    return this._client.post('/api/v1/auth/register', { body, ...options, __security: {  } });
+    return this._client.post('/api/v1/auth/register', { body, ...options, __security: {} });
   }
 
   /**
    * Resend the signup confirmation OTP to the given email address.
    */
   resendOtp(body: AuthResendOtpParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/api/v1/auth/resend-otp', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]), __security: {  } });
+    return this._client.post('/api/v1/auth/resend-otp', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+      __security: {},
+    });
   }
 
   /**
@@ -40,7 +45,12 @@ export class Auth extends APIResource {
    * /auth/confirm?token_hash=...&type=recovery
    */
   resetPassword(body: AuthResetPasswordParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/api/v1/auth/reset-password', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]), __security: {  } });
+    return this._client.post('/api/v1/auth/reset-password', {
+      body,
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+      __security: {},
+    });
   }
 
   /**
@@ -48,8 +58,11 @@ export class Auth extends APIResource {
    * Call this after the user has been redirected to /auth/confirm?type=recovery and
    * the dashboard has extracted the access_token from the URL fragment.
    */
-  updatePassword(body: AuthUpdatePasswordParams, options?: RequestOptions): APIPromise<AuthUpdatePasswordResponse> {
-    return this._client.post('/api/v1/auth/update-password', { body, ...options, __security: {  } });
+  updatePassword(
+    body: AuthUpdatePasswordParams,
+    options?: RequestOptions,
+  ): APIPromise<AuthUpdatePasswordResponse> {
+    return this._client.post('/api/v1/auth/update-password', { body, ...options, __security: {} });
   }
 
   /**
@@ -57,7 +70,7 @@ export class Auth extends APIResource {
    * full session on success.
    */
   verifyOtp(body: AuthVerifyOtpParams, options?: RequestOptions): APIPromise<AuthVerifyOtpResponse> {
-    return this._client.post('/api/v1/auth/verify-otp', { body, ...options, __security: {  } });
+    return this._client.post('/api/v1/auth/verify-otp', { body, ...options, __security: {} });
   }
 }
 
@@ -162,6 +175,6 @@ export declare namespace Auth {
     type AuthResendOtpParams as AuthResendOtpParams,
     type AuthResetPasswordParams as AuthResetPasswordParams,
     type AuthUpdatePasswordParams as AuthUpdatePasswordParams,
-    type AuthVerifyOtpParams as AuthVerifyOtpParams
+    type AuthVerifyOtpParams as AuthVerifyOtpParams,
   };
 }
