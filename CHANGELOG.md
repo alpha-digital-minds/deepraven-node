@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.4.0 (2026-05-19)
+
+Full Changelog: [v0.3.0...v0.4.0](https://github.com/alpha-digital-minds/deepraven-node/compare/v0.3.0...v0.4.0)
+
+### Features
+
+* **api:** api update ([955d4d1](https://github.com/alpha-digital-minds/deepraven-node/commit/955d4d16e5b7b47c7cf36ddf23b5abb43654d0c9))
+* support setting headers via env ([894ec9e](https://github.com/alpha-digital-minds/deepraven-node/commit/894ec9ea699856817402f288c96579c01bff7651))
+
+
+### Bug Fixes
+
+* **typescript:** upgrade tsc-multi so that it works with Node 26 ([f097a9a](https://github.com/alpha-digital-minds/deepraven-node/commit/f097a9a90f5f22f6637d856657b75aa2ed3a1887))
+
+
+### Chores
+
+* **format:** run eslint and prettier separately ([df8ddb3](https://github.com/alpha-digital-minds/deepraven-node/commit/df8ddb3cd07ad578c09939509d63ad8c09118d3d))
+* **formatter:** run prettier and eslint separately ([32a5afa](https://github.com/alpha-digital-minds/deepraven-node/commit/32a5afa4afce50bdb89f87f53fd0f827b9295a12))
+* **internal:** codegen related update ([9140d15](https://github.com/alpha-digital-minds/deepraven-node/commit/9140d1556f7ddb938f4249268cc4838be389d3b0))
+* **internal:** more robust bootstrap script ([542a964](https://github.com/alpha-digital-minds/deepraven-node/commit/542a96484bd2a97295eb93c4b6362c61d8bff302))
+* redact api-key headers in debug logs ([576ce42](https://github.com/alpha-digital-minds/deepraven-node/commit/576ce4268a0ef458b767054d1f0b0e4760067124))
+* **tests:** remove redundant File import ([0553b36](https://github.com/alpha-digital-minds/deepraven-node/commit/0553b36c5c34b02136711730d07d7e17287291a5))
+
 ## 0.3.0 (2026-04-15)
 
 Full Changelog: [v0.2.0...v0.3.0](https://github.com/alpha-digital-minds/deepraven-node/compare/v0.2.0...v0.3.0)
